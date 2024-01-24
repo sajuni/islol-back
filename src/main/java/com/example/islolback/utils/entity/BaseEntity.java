@@ -1,5 +1,6 @@
 package com.example.islolback.utils.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -20,9 +21,11 @@ public class BaseEntity {
     @CreatedDate
     private LocalDateTime regDt;
     @CreatedBy
+    @Column(length = 100)
     private String regId;
     @LastModifiedDate
     private LocalDateTime modDt;
     @LastModifiedBy
+    @Column(length = 100)
     private String modId;
 }
