@@ -1,6 +1,7 @@
 package com.example.islolback.member.entity;
 
 import com.example.islolback.league.entity.League;
+import com.example.islolback.member.dto.MemberSaveReqDTO;
 import com.example.islolback.naejeon.entity.Naejeon;
 import com.example.islolback.utils.entity.BaseEntity;
 import com.example.islolback.utils.enums.Role;
@@ -49,8 +50,19 @@ public class Member extends BaseEntity {
     private Set<League> leagues = new HashSet<>();
 
     @Builder
-    public Member(String id) {
-        mbrId = id;
+    public Member(MemberSaveReqDTO reqDTO) {
+        mbrId = reqDTO.getMbrGmId();
+        mbrGmId = reqDTO.getMbrGmId();
+        mbrPwd = reqDTO.getMbrPwd();
+        mbrNm = reqDTO.getMbrNm();
+        mbrBirthDAy = reqDTO.getMbrBirthDAy();
+        mbrAddr = reqDTO.getMbrAddr();
+        mbrSoleTier = reqDTO.getMbrSoleTier();
+        mbrFreeTier = reqDTO.getMbrFreeTier();
+        mbrMaxSoleTier = reqDTO.getMbrMaxSoleTier();
+        mbrMaxFreeTier = reqDTO.getMbrMaxFreeTier();
+        mbrNjTier = reqDTO.getMbrNjTier();
+        mbrLgTier = reqDTO.getMbrLgTier();
     }
 
 }

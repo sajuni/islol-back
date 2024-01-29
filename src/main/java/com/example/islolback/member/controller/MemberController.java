@@ -1,5 +1,6 @@
 package com.example.islolback.member.controller;
 
+import com.example.islolback.member.dto.MemberSaveReqDTO;
 import com.example.islolback.member.entity.Member;
 import com.example.islolback.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/save")
-    public ResponseEntity<?> save(Member member) {
-        memberService.save(member);
+    public ResponseEntity<?> save(MemberSaveReqDTO reqDto) {
+        memberService.save(reqDto);
         return ResponseEntity.ok("ok");
     }
 
