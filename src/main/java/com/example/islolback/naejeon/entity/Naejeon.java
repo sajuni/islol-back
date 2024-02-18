@@ -1,6 +1,5 @@
 package com.example.islolback.naejeon.entity;
 
-import com.example.islolback.member.entity.Member;
 import com.example.islolback.utils.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,8 +19,8 @@ public class Naejeon extends BaseEntity {
     @Column(length = 100)
     private String naejeonNm;
 
-    @ManyToMany(mappedBy = "naejeons")
-    private Set<Member> participants = new HashSet<>();
+    @OneToMany(mappedBy = "naejeon")
+    private Set<NaejeonInfo> naejeonInfos = new HashSet<>();
 
     @Builder
     public Naejeon(String naejeonNm) {

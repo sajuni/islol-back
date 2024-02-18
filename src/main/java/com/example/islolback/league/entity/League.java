@@ -20,8 +20,8 @@ public class League extends BaseEntity {
     @Column(length = 100)
     private String leagueNm;
 
-    @ManyToMany(mappedBy = "leagues")
-    private Set<Member> members = new HashSet<>();
+    @OneToMany(mappedBy = "league")
+    private Set<LeagueInfo> leagueInfos = new HashSet<>();
 
     @Builder
     public League(String leagueNm) {

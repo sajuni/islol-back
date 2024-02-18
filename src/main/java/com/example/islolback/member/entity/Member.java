@@ -1,13 +1,16 @@
 package com.example.islolback.member.entity;
 
-import com.example.islolback.league.entity.League;
+import com.example.islolback.league.entity.LeagueInfo;
 import com.example.islolback.member.dto.MemberSaveReqDTO;
-import com.example.islolback.naejeon.entity.Naejeon;
+import com.example.islolback.naejeon.entity.NaejeonInfo;
 import com.example.islolback.utils.entity.BaseEntity;
 import com.example.islolback.utils.enums.Role;
 import com.example.islolback.utils.enums.Tier;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,29 +28,26 @@ public class Member extends BaseEntity {
     private String mbrNm;
     private String mbrBirthDAy;
     private String mbrAddr;
+    @Enumerated(EnumType.STRING)
     private Tier mbrSoleTier;
+    @Enumerated(EnumType.STRING)
     private Tier mbrFreeTier;
+    @Enumerated(EnumType.STRING)
     private Tier mbrMaxSoleTier;
+    @Enumerated(EnumType.STRING)
     private Tier mbrMaxFreeTier;
+    @Enumerated(EnumType.STRING)
     private Tier mbrNjTier;
+    @Enumerated(EnumType.STRING)
     private Tier mbrLgTier;
+    @Enumerated(EnumType.STRING)
     private Role mbrRole;
 
-    @ManyToMany
-    @JoinTable(
-            name = "naejeon_participant",
-            joinColumns = @JoinColumn(name = "mbrSeq"),
-            inverseJoinColumns = @JoinColumn(name = "naejeonId")
-    )
-    private Set<Naejeon> naejeons = new HashSet<>();
+    @OneToMany(mappedBy = "member")
+    private Set<NaejeonInfo> naejeonInfos = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "league_participant",
-            joinColumns = @JoinColumn(name = "mbrSeq"),
-            inverseJoinColumns = @JoinColumn(name = "leagueId")
-    )
-    private Set<League> leagues = new HashSet<>();
+    @OneToMany(mappedBy = "member")
+    private Set<LeagueInfo> leagueInfos = new HashSet<>();
 
     @Builder
     public Member(MemberSaveReqDTO reqDTO) {
